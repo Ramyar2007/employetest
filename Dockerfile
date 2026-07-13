@@ -20,6 +20,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 
 COPY composer.json composer.lock* ./
+ENV COMPOSER_NO_AUDIT=1
 RUN composer install --no-dev --no-scripts --optimize-autoloader --no-interaction
 
 COPY . .
