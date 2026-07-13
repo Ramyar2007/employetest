@@ -26,7 +26,7 @@ RUN composer install --no-dev --no-scripts --optimize-autoloader --no-interactio
 COPY . .
 COPY --from=assets /app/public/build ./public/build
 
-RUN mkdir -p storage/framework/{cache,sessions,views} storage/logs bootstrap/cache \
+RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache \
     && composer dump-autoload --optimize
 
