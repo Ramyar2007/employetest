@@ -18,6 +18,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
         ]);
+
+        // Render (and most PaaS hosts) terminate TLS at a proxy and forward
+        // plain HTTP internally — trust that proxy so Laravel knows the
+        // original request was HTTPS and generates https:// asset/route URLs.
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
